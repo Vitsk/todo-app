@@ -1,11 +1,11 @@
 import React from 'react';
+import googleIcon from '../../assets/img/google-icon.png';
 import './SignInButton.css';
-import googleIcon from '../../assets/img/google-icon.png'
 
-export const SignInButton = ({className}) => {
+export const SignInButton = ({className, authHandler}) => {
   return (
     <>
-      <div className={className}>
+      <div className={className} onClick={authHandler}>
         <div className="google-btn">
           <div className="google-icon-wrapper">
             <img
