@@ -1,0 +1,13 @@
+.App-header {
+  margin-top: 100px;
+}
+
+.signUpBtn {
+  margin-top: 100px;
+}
+
+@media(max-width: 330px) {
+  .App-header {
+    text-align: center;
+  }
+}
