@@ -1,7 +1,7 @@
 import { checkAuth } from "../auth/thunks";
 import { initializingApp } from "./actions";
 
-const initialize = () => async (dispatch) => {
+const initialize = () => (dispatch) => {
   const promise = dispatch(checkAuth());
 
   Promise.all([promise]).then(() => {

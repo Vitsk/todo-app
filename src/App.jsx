@@ -8,12 +8,12 @@ import { initialize } from './redux/initializingApp/thunks';
 import { authViaGoogle } from './redux/auth/thunks';
 import './App.css';
 
-const App = (props) => {
+const App = ({ initialize, ...props }) => {
   const history = useHistory();
 
   useEffect(() => {
-    props.initialize();
-  }, [])
+    initialize();
+  }, [initialize])
 
   const authHandler = () => {
     props.authViaGoogle().then(() => {
@@ -24,8 +24,9 @@ const App = (props) => {
 
   return (
     <>
-      {props.initializingApp ? 'Loading...' :
-        <div className="App">
+      {props.initializingApp
+        ? 'Loading...'
+        : <div className="App">
           <Switch>
             <Route exact path='/'>
               {props.isUserLogin ? <Redirect to='/main' /> : <LoginPage
