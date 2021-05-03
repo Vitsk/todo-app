@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
-import './App.css';
 import { LoginPage } from './components/LoginPage/LoginPage';
 import { MainPage } from './components/MainPage/MainPage';
 import { PrivateRoute } from './components/PrivateRoute';
-import { initialize } from './redux/reducers/initialReducer';
-import { auth } from './redux/reducers/loginReducer';
+import { initialize } from './redux/initializingApp/thunks';
+import { authViaGoogle } from './redux/auth/thunks';
+import './App.css';
 
 const App = (props) => {
   const history = useHistory();
@@ -16,7 +16,7 @@ const App = (props) => {
   }, [])
 
   const authHandler = () => {
-    props.auth().then(() => {
+    props.authViaGoogle().then(() => {
       history.push('/main')
     })
   }
@@ -48,14 +48,14 @@ const App = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    initializingApp: state.initialReducer.initializingApp,
-    isUserLogin: state.loginReducer.isUserLogin
+    initializingApp: state.initializingApp.initializingApp,
+    isUserLogin: state.auth.isUserLogin
   }
 }
 
 const mapDispatchToProps = {
   initialize,
-  auth
+  authViaGoogle
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
