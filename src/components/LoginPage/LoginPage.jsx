@@ -1,6 +1,5 @@
 import React from 'react'
-import { SignInButton } from '../SignInButton/SignInButton'
-import './LoginPage.css'
+import { SignInButton } from './SignInButton/SignInButton'
 
 export const LoginPage = ({ authHandler }) => {
 

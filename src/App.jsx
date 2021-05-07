@@ -2,11 +2,13 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import { LoginPage } from './components/LoginPage/LoginPage';
-import { MainPage } from './components/MainPage/MainPage';
+import { HomePage } from './components/MainPage/HomePage';
+import { AddPage } from './components/MainPage/AddPage';
 import { PrivateRoute } from './components/PrivateRoute';
 import { initialize } from './redux/initializingApp/thunks';
 import { authViaGoogle } from './redux/auth/thunks';
 import './App.css';
+import { Navbar } from './components/Navbar';
 
 const App = ({ initialize, ...props }) => {
   const history = useHistory();
@@ -17,7 +19,7 @@ const App = ({ initialize, ...props }) => {
 
   const authHandler = () => {
     props.authViaGoogle().then(() => {
-      history.push('/main')
+      history.push('/main/home')
     })
   }
 
@@ -29,7 +31,7 @@ const App = ({ initialize, ...props }) => {
         : <div className="App">
           <Switch>
             <Route exact path='/'>
-              {props.isUserLogin ? <Redirect to='/main' /> : <LoginPage
+              {props.isUserLogin ? <Redirect to='/main/home' /> : <LoginPage
                 authHandler={authHandler}
               />}
             </Route>
@@ -37,7 +39,13 @@ const App = ({ initialize, ...props }) => {
               path='/main'
               isUserLogin={props.isUserLogin}
             >
-              <MainPage />
+              <Navbar />
+              <Route path="/main/home">
+                <HomePage />
+              </Route>
+              <Route path="/main/add">
+                <AddPage />
+              </Route>
             </PrivateRoute>
           </Switch>
         </div>

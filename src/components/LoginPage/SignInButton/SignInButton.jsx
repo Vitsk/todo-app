@@ -1,5 +1,5 @@
 import React from 'react';
-import googleIcon from '../../assets/img/google-icon.png';
+import googleIcon from '../../../assets/img/google-icon.png';
 import './SignInButton.css';
 
 export const SignInButton = ({className, authHandler}) => {
