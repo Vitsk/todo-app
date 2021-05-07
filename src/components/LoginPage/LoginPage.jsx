@@ -6,7 +6,7 @@ export const LoginPage = ({ authHandler }) => {
   return (
     <>
       <div className="container">
-        <div className="text-center">
+        <div className="d-flex flex-column align-items-center">
           <h1 className="App-header">Welcome to Todo app</h1>
           <SignInButton
             className="signUpBtn"

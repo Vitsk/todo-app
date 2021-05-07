@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
+import { FullSizeLoader } from './components/Loaders';
 import { LoginPage } from './components/LoginPage/LoginPage';
 import { AddPage } from './components/MainPage/AddPage';
 import { HomePage } from './components/MainPage/HomePage';
@@ -19,21 +20,25 @@ const App = ({ initialize, ...props }) => {
   return (
     <>
       {props.initializingApp
-        ? 'Loading...'
+        ? <FullSizeLoader />
         : <div className="App">
           <Switch>
             <Route exact path='/'>
-              {props.isUserLogin ? <Redirect to='/main/home' /> : <LoginPage
-                authHandler={props.authViaGoogle}
-              />}
+              {
+                props.isUserLogin
+                  ? <Redirect to='/main/home' />
+                  : <LoginPage
+                    authHandler={props.authViaGoogle}
+                  />
+              }
             </Route>
+
             <PrivateRoute
               path='/main'
               isUserLogin={props.isUserLogin}
             >
-              <Navbar 
-                signOut={props.signOut}
-              />
+              <Navbar signOut={props.signOut} />
+
               <Route path="/main/home">
                 <HomePage />
               </Route>
