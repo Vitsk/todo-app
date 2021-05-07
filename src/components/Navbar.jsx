@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-export const Navbar = () => {
+export const Navbar = ({ signOut }) => {
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -21,7 +21,11 @@ export const Navbar = () => {
                 </NavLink>
               </li>
             </ul>
-            <button class="btn btn-outline-danger" type="submit">Exit</button>
+            <button 
+              className="btn btn-outline-danger" 
+              type="submit"
+              onClick={signOut}
+            >Exit</button>
           </div>
         </div>
       </nav>

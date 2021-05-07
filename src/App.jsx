@@ -1,27 +1,19 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
-import { LoginPage } from './components/LoginPage/LoginPage';
-import { HomePage } from './components/MainPage/HomePage';
-import { AddPage } from './components/MainPage/AddPage';
-import { PrivateRoute } from './components/PrivateRoute';
-import { initialize } from './redux/initializingApp/thunks';
-import { authViaGoogle } from './redux/auth/thunks';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
+import { LoginPage } from './components/LoginPage/LoginPage';
+import { AddPage } from './components/MainPage/AddPage';
+import { HomePage } from './components/MainPage/HomePage';
 import { Navbar } from './components/Navbar';
+import { PrivateRoute } from './components/PrivateRoute';
+import { authViaGoogle, signOut } from './redux/auth/thunks';
+import { initialize } from './redux/initializingApp/thunks';
 
 const App = ({ initialize, ...props }) => {
-  const history = useHistory();
-
   useEffect(() => {
     initialize();
   }, [initialize])
-
-  const authHandler = () => {
-    props.authViaGoogle().then(() => {
-      history.push('/main/home')
-    })
-  }
 
 
   return (
@@ -32,14 +24,16 @@ const App = ({ initialize, ...props }) => {
           <Switch>
             <Route exact path='/'>
               {props.isUserLogin ? <Redirect to='/main/home' /> : <LoginPage
-                authHandler={authHandler}
+                authHandler={props.authViaGoogle}
               />}
             </Route>
             <PrivateRoute
               path='/main'
               isUserLogin={props.isUserLogin}
             >
-              <Navbar />
+              <Navbar 
+                signOut={props.signOut}
+              />
               <Route path="/main/home">
                 <HomePage />
               </Route>
@@ -64,7 +58,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   initialize,
-  authViaGoogle
+  authViaGoogle,
+  signOut
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
