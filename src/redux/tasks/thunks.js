@@ -1,8 +1,8 @@
 import { database } from "../../firebase"
 import { setTasks } from './actions'
 
-export const getTasks = () => (dispatch) => {
-  let ref = database.ref('/');
+export const getTasks = (userId) => (dispatch) => {
+  let ref = database.ref(`${userId}/tasks/`);
 
   ref.on('value', (snapshot) => {
     const data = snapshot.val();
@@ -14,14 +14,22 @@ export const getTasks = () => (dispatch) => {
     })
 
     console.log(tasks)
-    dispatch(setTasks(tasks))
+    dispatch(setTasks(tasks.reverse()))
   });
 }
 
-export const addTask = (title) => (dispatch) => {
-  let ref = database.ref(`tasks/${Date.now()}`);
+export const addTask = (userId, id, title, description) => (dispatch) => {
+  let ref = database.ref(`${userId}/tasks/${id}`);
 
   ref.set({
-    title
+    id,
+    title,
+    description
   })
+}
+
+export const deleteTask = (userId, id) => (dispatch) => {
+  let ref = database.ref(`${userId}/tasks/${id}`);
+
+  ref.remove()
 }

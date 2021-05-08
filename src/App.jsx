@@ -4,7 +4,6 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
 import { FullSizeLoader } from './components/Loaders';
 import { LoginPage } from './components/LoginPage/LoginPage';
-import { AddPage } from './components/MainPage/AddPage';
 import HomePage from './components/MainPage/HomePage';
 import { Navbar } from './components/Navbar';
 import { PrivateRoute } from './components/PrivateRoute';
@@ -26,7 +25,7 @@ const App = ({ initialize, ...props }) => {
             <Route exact path='/'>
               {
                 props.isUserLogin
-                  ? <Redirect to='/main/home' />
+                  ? <Redirect to='/main' />
                   : <LoginPage
                     authHandler={props.authViaGoogle}
                   />
@@ -38,13 +37,7 @@ const App = ({ initialize, ...props }) => {
               isUserLogin={props.isUserLogin}
             >
               <Navbar signOut={props.signOut} />
-
-              <Route path="/main/home">
-                <HomePage />
-              </Route>
-              <Route path="/main/add">
-                <AddPage />
-              </Route>
+              <HomePage />
             </PrivateRoute>
           </Switch>
         </div>

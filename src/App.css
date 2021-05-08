@@ -3,6 +3,10 @@ html, body, #root, #root>div {
   margin: 0;
 }
 
+.App {
+  background-color: #e6e6e6;
+}
+
 .App-header {
   margin-top: 100px;
 }
