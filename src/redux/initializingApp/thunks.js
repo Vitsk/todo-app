@@ -6,6 +6,8 @@ const initialize = () => (dispatch) => {
 
   Promise.all([promise]).then(() => {
     dispatch(initializingApp(false))
+  }).catch(() => {
+    dispatch(initializingApp(false))
   })
 }
 

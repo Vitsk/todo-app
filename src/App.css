@@ -1,5 +1,22 @@
+html, body, #root, #root>div {
+  height: 100%;
+  margin: 0;
+}
+
 .App {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  background-color: #e6e6e6;
+}
+
+.App-header {
+  margin-top: 100px;
+}
+
+.signUpBtn {
+  margin-top: 100px;
+}
+
+@media(max-width: 330px) {
+  .App-header {
+    text-align: center;
+  }
 }
