@@ -5,7 +5,7 @@ import './App.css';
 import { FullSizeLoader } from './components/Loaders';
 import { LoginPage } from './components/LoginPage/LoginPage';
 import { AddPage } from './components/MainPage/AddPage';
-import { HomePage } from './components/MainPage/HomePage';
+import HomePage from './components/MainPage/HomePage';
 import { Navbar } from './components/Navbar';
 import { PrivateRoute } from './components/PrivateRoute';
 import { authViaGoogle, signOut } from './redux/auth/thunks';

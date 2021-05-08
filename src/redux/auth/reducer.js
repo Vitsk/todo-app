@@ -1,7 +1,11 @@
-import { IS_USER_LOGIN } from './actionCreators'
+import { 
+  IS_USER_LOGIN,
+  SET_USER_ID
+} from './actionCreators'
 
 const initialState = {
-  isUserLogin: false
+  isUserLogin: false,
+  userId: ''
 }
 
 const authReducer = (state = initialState, action) => {
@@ -10,6 +14,12 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         isUserLogin: action.isUserLogin
+      }
+
+    case SET_USER_ID:
+      return {
+        ...state,
+        userId: action.userId
       }
 
     default:
