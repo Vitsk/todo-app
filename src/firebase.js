@@ -1,5 +1,5 @@
 import firebase from "firebase/app";
-import "firebase/database"
+import "firebase/database";
 import "firebase/auth";
 
 const firebaseConfig = {
@@ -15,4 +15,4 @@ const firebaseConfig = {
 export const provider = new firebase.auth.GoogleAuthProvider();
 
 export const app = firebase.initializeApp(firebaseConfig);
-export const database = firebase.database();
+export const database = app.database('https://todo-app-d6cc7-default-rtdb.europe-west1.firebasedatabase.app/');
