@@ -16,7 +16,7 @@ const checkAuth = () => (dispatch) => {
 }
 
 const authViaGoogle = () => (dispatch) => {
-  return app.auth().signInWithPopup(provider).then(result => {
+  return app.auth().signInWithPopup(provider).then((result) => {
     dispatch(isUserLogin(true))
     dispatch(setUserId(result.user.uid))
   })

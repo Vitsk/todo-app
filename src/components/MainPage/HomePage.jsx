@@ -7,7 +7,7 @@ import { TaskItem } from './TaskItem'
 const HomePage = ({ tasks, userId, getTasks, addTask, deleteTask }) => {
   useEffect(() => {
     getTasks(userId);
-  }, [getTasks, userId])
+  }, [userId])
 
   return (
     <>
