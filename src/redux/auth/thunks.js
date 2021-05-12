@@ -25,7 +25,6 @@ const authViaGoogle = () => (dispatch) => {
 const signOut = () => (dispatch) => {
   return app.auth().signOut().then(() => {
     dispatch(isUserLogin(false))
-    dispatch(setUserId(''))
   })
 }
 

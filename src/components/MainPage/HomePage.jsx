@@ -7,7 +7,7 @@ import { TaskItem } from './TaskItem'
 const HomePage = ({ tasks, userId, getTasks, addTask, deleteTask }) => {
   useEffect(() => {
     getTasks(userId);
-  }, [userId])
+  }, [userId, getTasks])
 
   return (
     <>
@@ -34,7 +34,7 @@ const HomePage = ({ tasks, userId, getTasks, addTask, deleteTask }) => {
         </div>
       </div>
 
-      <Modal 
+      <Modal
         addTask={addTask}
         userId={userId}
       />
