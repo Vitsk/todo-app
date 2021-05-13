@@ -28,6 +28,14 @@ export const addTask = (userId, id, title) => (dispatch) => {
   })
 }
 
+export const changingTitle = (userId, id, title) => (dispatch) => {
+  let ref = database.ref(`${userId}/tasks/${id}`);
+
+  ref.update({
+    title
+  })
+}
+
 export const doneTask = (userId, id, done) => (dispatch) => {
   let ref = database.ref(`${userId}/tasks/${id}`);
 
