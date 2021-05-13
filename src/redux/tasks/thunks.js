@@ -23,7 +23,16 @@ export const addTask = (userId, id, title) => (dispatch) => {
 
   ref.set({
     id,
-    title
+    title,
+    done: false
+  })
+}
+
+export const doneTask = (userId, id, done) => (dispatch) => {
+  let ref = database.ref(`${userId}/tasks/${id}`);
+
+  ref.update({
+    done
   })
 }
 
