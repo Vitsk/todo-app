@@ -1,9 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { addTask, deleteTask, getTasks, doneTask } from '../../redux/tasks/thunks'
+import {
+  addTask,
+  deleteTask,
+  getTasks,
+  doneTask,
+  changingTitle
+} from '../../redux/tasks/thunks'
 import { TaskItem } from './TaskItem'
 
-const HomePage = ({ tasks, userId, getTasks, addTask, deleteTask, doneTask }) => {
+const HomePage = ({
+  tasks,
+  userId,
+  getTasks,
+  addTask,
+  deleteTask,
+  doneTask,
+  changingTitle
+}) => {
   const [taskTitle, setTaskTitle] = useState('');
   const [focusInput, setFocusInput] = useState(false);
 
@@ -31,6 +45,7 @@ const HomePage = ({ tasks, userId, getTasks, addTask, deleteTask, doneTask }) =>
                 value={taskTitle}
                 onChange={(e) => setTaskTitle(e.target.value)}
                 onBlur={() => setFocusInput(false)}
+                autoFocus
               />
                 : <button
                   className="btn btn-secondary"
@@ -50,14 +65,13 @@ const HomePage = ({ tasks, userId, getTasks, addTask, deleteTask, doneTask }) =>
                     done={item.done}
                     userId={userId}
                     doneTask={doneTask}
+                    changingTitle={changingTitle}
                     deleteTask={deleteTask}
                   />
                 ))}
               </ul>
             </div>
           </div>
-
-
         </div>
       </div>
     </>
@@ -75,6 +89,7 @@ const mapDispatchToProps = {
   getTasks,
   addTask,
   doneTask,
+  changingTitle,
   deleteTask
 }
 
