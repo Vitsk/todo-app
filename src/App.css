@@ -15,6 +15,12 @@ html, body, #root, #root>div {
   margin-top: 100px;
 }
 
+.title-text {
+  overflow-x:hidden;
+  white-space: pre;
+  width: 70%;
+}
+
 @media(max-width: 330px) {
   .App-header {
     text-align: center;

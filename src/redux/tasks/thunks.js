@@ -18,13 +18,21 @@ export const getTasks = (userId) => (dispatch) => {
   });
 }
 
-export const addTask = (userId, id, title, description) => (dispatch) => {
+export const addTask = (userId, id, title) => (dispatch) => {
   let ref = database.ref(`${userId}/tasks/${id}`);
 
   ref.set({
     id,
     title,
-    description
+    done: false
+  })
+}
+
+export const doneTask = (userId, id, done) => (dispatch) => {
+  let ref = database.ref(`${userId}/tasks/${id}`);
+
+  ref.update({
+    done
   })
 }
 
