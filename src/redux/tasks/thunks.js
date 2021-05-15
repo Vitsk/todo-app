@@ -13,7 +13,6 @@ export const getTasks = (userId) => (dispatch) => {
       }
     })
 
-    console.log(tasks)
     dispatch(setTasks(tasks.reverse()))
   });
 }

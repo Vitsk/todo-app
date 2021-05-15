@@ -10,7 +10,12 @@ export const TaskItem = ({
   changingTitle
 }) => {
   const [inputTitleSwitcher, setInputTitleSwitcher] = useState(false);
-  const [inputTitleValue, setInputTitleValue] = useState(title);
+  const [inputTitleValue, setInputTitleValue] = useState('');
+
+  const inputSwitchHandler = () => {
+    setInputTitleSwitcher(true); 
+    setInputTitleValue(title)
+  }
 
   const changingTitleHandler = () => {
     if (inputTitleValue) {
@@ -54,7 +59,7 @@ export const TaskItem = ({
             :
             <span
               className="title-text"
-              onClick={() => setInputTitleSwitcher(true)}
+              onClick={inputSwitchHandler}
             >{title}</span>
         }
         <button
@@ -67,3 +72,5 @@ export const TaskItem = ({
     </>
   )
 }
+
+export const TaskItemMemo = React.memo(TaskItem);
