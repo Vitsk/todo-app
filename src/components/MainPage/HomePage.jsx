@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import { connect } from 'react-redux'
 import {
-  addTask,
-  deleteTask,
-  getTasks,
-  doneTask,
-  changingTitle
+  addTask,changingTitle, deleteTask,
+  doneTask, getTasks
 } from '../../redux/tasks/thunks'
-import { TaskItem } from './TaskItem'
+import { TaskItemMemo } from './TaskItem'
 
 const HomePage = ({
   tasks,
@@ -20,6 +17,7 @@ const HomePage = ({
 }) => {
   const [taskTitle, setTaskTitle] = useState('');
   const [focusInput, setFocusInput] = useState(false);
+  const tasksMemo = useMemo(() => tasks, [tasks])
 
   useEffect(() => {
     getTasks(userId);
@@ -57,8 +55,8 @@ const HomePage = ({
 
             <div className="card" style={{ width: '20rem' }}>
               <ul className="list-group list-group-flush">
-                {tasks.map((item, index) => (
-                  <TaskItem
+                {tasksMemo.map((item, index) => (
+                  <TaskItemMemo
                     key={index}
                     id={item.id}
                     title={item.title}
